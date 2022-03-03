@@ -31,16 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .httpBasic()
+                .and()
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/register").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/");
+                .antMatchers("/users/register")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

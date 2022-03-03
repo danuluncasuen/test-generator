@@ -1,9 +1,6 @@
 package md.utm.testgenerator.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,6 +21,8 @@ public class SimpleTask {
 
     @Column(nullable = false)
     @OneToMany
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Answer> answers;
 
     private TaskComplexity complexity;

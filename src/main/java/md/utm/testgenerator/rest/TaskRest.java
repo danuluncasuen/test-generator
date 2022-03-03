@@ -32,4 +32,14 @@ public class TaskRest {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    private ResponseEntity<?> deleteEntity(@PathVariable Long id) {
+        try {
+            simpleTaskService.deleteTask(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

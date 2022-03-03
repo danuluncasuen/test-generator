@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import md.utm.testgenerator.db.AdminRepository;
 import md.utm.testgenerator.entity.Admin;
 import md.utm.testgenerator.entity.dto.AdminDto;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Service;
 public class AdminService {
 
     private AdminRepository adminRepository;
+    private PasswordEncoder passwordEncoder;
 
     public void addNewAdmin(AdminDto adminDto) {
+        adminDto.setPassword(passwordEncoder.encode(adminDto.getPassword()));
         Admin admin = new Admin(adminDto);
         adminRepository.save(admin);
     }

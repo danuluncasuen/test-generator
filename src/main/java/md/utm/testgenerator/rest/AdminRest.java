@@ -23,7 +23,7 @@ public class AdminRest {
         }
     }
 
-    @PostMapping("/add")
+    @PostMapping("/register")
     public ResponseEntity<?> addUser(@RequestBody AdminDto adminDto) {
         try {
             adminService.addNewAdmin(adminDto);

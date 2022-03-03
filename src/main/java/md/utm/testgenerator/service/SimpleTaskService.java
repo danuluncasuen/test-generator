@@ -19,8 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 public class SimpleTaskService {
 
-    private AdminService adminService;
-
     private SimpleTaskRepository simpleTaskRepository;
     private AnswerRepository answerRepository;
     private AdminRepository adminRepository;
@@ -53,5 +51,9 @@ public class SimpleTaskService {
 
     public List<SimpleTask> getAll() {
         return simpleTaskRepository.findAll();
+    }
+
+    public void deleteTask(Long id) {
+        simpleTaskRepository.deleteById(id);
     }
 }
