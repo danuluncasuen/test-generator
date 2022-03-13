@@ -31,7 +31,8 @@ public class SimpleTaskService {
         SimpleTask simpleTask = SimpleTask.builder()
                 .author(adminRepository.getById(simpleTaskDto.getAuthorID()))
                 .question(simpleTaskDto.getQuestion())
-                .complexity(TaskComplexity.getByLabel(simpleTaskDto.getComplexity()))
+                .description(simpleTaskDto.getDescription())
+                .taskComplexity(TaskComplexity.getByLabel(simpleTaskDto.getComplexity()))
                 .answers(answers)
                 .build();
         simpleTaskRepository.save(simpleTask);

@@ -7,10 +7,8 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SimpleTaskDto extends GeneralTaskDto{
-
-    private String question;
-    private List<AnswerDto> answers;
-    private Long authorID;
-
+public class CodeTaskDto extends GeneralTaskDto{
+    private String methodSignature;
+    private Language language;
+    private List<TestCaseDto> testCases;
 }

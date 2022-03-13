@@ -1,20 +1,17 @@
 package md.utm.testgenerator.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-@Builder
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@AllArgsConstructor
-public class SimpleTask {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class SimpleTask extends GeneralTask {
 
     @Column(unique = true, nullable = false)
     private String question;
@@ -24,10 +21,5 @@ public class SimpleTask {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Answer> answers;
-
-    private TaskComplexity complexity;
-
-    @OneToOne
-    private Admin author;
 
 }

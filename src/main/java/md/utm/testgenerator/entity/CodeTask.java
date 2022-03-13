@@ -1,23 +1,25 @@
 package md.utm.testgenerator.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+import md.utm.testgenerator.entity.dto.Language;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-public class CodeTask {
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+public class CodeTask extends GeneralTask {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String description;
+    private String methodSignature;
+    @Enumerated(EnumType.STRING)
+    private Language language;
     @OneToMany
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private List<TestCases> testCases;
+    private List<TestCase> testCases;
 
 }
