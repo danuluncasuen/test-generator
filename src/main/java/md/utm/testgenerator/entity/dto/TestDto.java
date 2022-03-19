@@ -3,10 +3,12 @@ package md.utm.testgenerator.entity.dto;
 import lombok.Builder;
 import lombok.Data;
 
-@Data
+import java.util.List;
+
 @Builder
-public class TestCaseDto {
+@Data
+public class TestDto {
     private Long id;
-    private String input;
-    private String expectedOutput;
+    private Long time;
+    private List<GeneralTaskDto> tasks;
 }

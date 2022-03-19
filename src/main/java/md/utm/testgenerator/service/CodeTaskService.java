@@ -1,11 +1,13 @@
 package md.utm.testgenerator.service;
 
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import md.utm.testgenerator.db.CandidateCodeSubmissionRepository;
 import md.utm.testgenerator.db.CodeTaskRepository;
 import md.utm.testgenerator.db.TestCaseRepository;
+import md.utm.testgenerator.entity.CandidateCodeSubmission;
 import md.utm.testgenerator.entity.CodeTask;
 import md.utm.testgenerator.entity.TestCase;
+import md.utm.testgenerator.entity.dto.CandidateCodeSubmissionDto;
 import md.utm.testgenerator.entity.dto.CodeTaskDto;
 import md.utm.testgenerator.entity.dto.TestCaseDto;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ public class CodeTaskService {
 
     private CodeTaskRepository codeTaskRepository;
     private TestCaseRepository testCaseRepository;
+    private CandidateCodeSubmissionRepository candidateCodeSubmissionRepository;
 
     public void addNew(CodeTaskDto codeTaskDto) {
         for (TestCaseDto testCaseDto:codeTaskDto.getTestCases()) {
@@ -30,5 +33,11 @@ public class CodeTaskService {
                         .methodSignature(codeTaskDto.getMethodSignature())
                         .language(codeTaskDto.getLanguage())
                         .build());
+    }
+
+    public void addCandidateSubmission(CandidateCodeSubmissionDto candidateCodeSubmissionDto) {
+        CandidateCodeSubmission candidateCodeSubmission = CandidateCodeSubmission.builder()
+                .submission(candidateCodeSubmissionDto.getSubmission()).build();
+        candidateCodeSubmissionRepository.save(candidateCodeSubmission);
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import md.utm.testgenerator.entity.dto.AdminDto;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Data
@@ -24,6 +25,10 @@ public class Admin {
 
     @Column(nullable = false)
     private String password;
+
+    @Email
+    @Column(nullable = false, unique = true)
+    private String email;
 
     private String roles;
 

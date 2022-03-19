@@ -8,8 +8,8 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 
 @Data
-@MappedSuperclass
 @SuperBuilder
+@MappedSuperclass
 @NoArgsConstructor
 public class GeneralTask {
 

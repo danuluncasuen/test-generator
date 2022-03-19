@@ -1,6 +1,7 @@
 package md.utm.testgenerator.rest;
 
 import lombok.AllArgsConstructor;
+import md.utm.testgenerator.entity.dto.CandidateCodeSubmissionDto;
 import md.utm.testgenerator.entity.dto.CodeTaskDto;
 import md.utm.testgenerator.entity.dto.SimpleTaskDto;
 import md.utm.testgenerator.service.CodeTaskService;
@@ -50,6 +51,16 @@ public class TaskRest {
     public ResponseEntity<?> addNewCodeTask(@RequestBody CodeTaskDto codeTaskDto) {
         try {
             codeTaskService.addNew(codeTaskDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/submit/code")
+    public ResponseEntity<?> submitCodeTask(@RequestBody CandidateCodeSubmissionDto candidateCodeSubmissionDto) {
+        try {
+            codeTaskService.addCandidateSubmission(candidateCodeSubmissionDto);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
